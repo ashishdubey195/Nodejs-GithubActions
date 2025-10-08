@@ -2,28 +2,28 @@ name: build nodejs application
 on:
   push:
     branches:
-     - master
-    branches-ignore:
-      - dev
-      - test
+      - master
   pull_request:
     branches:
-     - master
-
+      - master
 jobs:
   buildJob:
     runs-on: ubuntu-latest
     steps:
       - name: Clone the Repo
         uses: actions/checkout@v5
+
       - name: Install nodejs
         uses: actions/setup-node@v5
         with:
           node-version: '18'
           cache: 'npm'
+
       - name: Install dependencies
         run: npm ci
+
       - name: Executes test cases
         run: npm test
+
       - name: Build code
         run: npm run build
